@@ -11,7 +11,7 @@ class App
         this.dateConstructor = Date;
         this.dateInstance = new Date();
         this.year = this.dateInstance.getFullYear();
-        this.month = this.dateInstance.getMonth() + 2;
+        this.month = this.dateInstance.getMonth() + 0;
         this.day = this.dateInstance.getDay();
         this.localDate = this.dateInstance.toLocaleDateString('fa-IR');
         this.daysPerMonth = (year, month) =>
@@ -27,6 +27,8 @@ class App
     generateTemplate()
     {
         const totalDays = Math.ceil(this.calendar.length / this.weekDays.length) * this.weekDays.length;
+        let prev = [];
+        let next = [];
         
         this.weekDays.forEach(_day =>
         {
@@ -38,12 +40,30 @@ class App
 
         if(this.calendar[0].dayofWeek > 0)
         {
-            // console.log(this.calendar[0].dayofWeek)
             for (let i = this.calendar[0].dayofWeek; i > 0; i--) {
-                console.log(i - 1)
+                prev.push({i: i- 1})
             }
         }
+
+        for (let i = this.calendar.length; i < totalDays; i++) {
+            next.push({i: i + 1})
+        }
+
+        this.calendar = [...prev, ...this.calendar, ...next];
+
+        this.calendar.forEach(_item =>
+        {
+            const girdEl = document.createElement("div");
+            girdEl.classList.add("gird");   
+            if(31 === _item?.dayofMonth)
+            {
+                girdEl.classList.add("active")
+            }
+            girdEl.textContent = _item?.dayofMonth 
+            this.calendarWrapperElement.appendChild(girdEl);
+        })
     }
+
 
     generateCalendar()
     {

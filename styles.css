@@ -27,5 +27,13 @@ body
 
 .calendar_wrapper .grid
 {
-
 }
+
+.active
+{
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+}
+
