@@ -40,12 +40,14 @@ class App
 
         if(this.calendar[0].dayofWeek > 0)
         {
-            for (let i = this.calendar[0].dayofWeek; i > 0; i--) {
+            for (let i = this.calendar[0].dayofWeek; i > 0; i--)
+            {
                 prev.push({i: i- 1})
             }
         }
 
-        for (let i = this.calendar.length; i < totalDays; i++) {
+        for (let i = this.calendar.length; i < totalDays; i++)
+        {
             next.push({i: i + 1})
         }
 
