@@ -11,7 +11,7 @@ class App
         this.dateConstructor = Date;
         this.dateInstance = new Date();
         this.year = this.dateInstance.getFullYear();
-        this.month = this.dateInstance.getMonth() + 0;
+        this.month = this.dateInstance.getMonth() + 1;
         this.day = this.dateInstance.getDay();
         this.localDate = this.dateInstance.toLocaleDateString('fa-IR');
         this.daysPerMonth = (year, month) =>
@@ -64,6 +64,8 @@ class App
             girdEl.textContent = _item?.dayofMonth 
             this.calendarWrapperElement.appendChild(girdEl);
         })
+
+        console.log("dsfds", this.daysPerMonth(2024, 2, 0))
     }
 
 
