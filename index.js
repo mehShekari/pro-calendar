@@ -11,7 +11,7 @@ class App
         this.dateConstructor = Date;
         this.dateInstance = new Date();
         this.year = this.dateInstance.getFullYear();
-        this.month = this.dateInstance.getMonth();
+        this.month = this.dateInstance.getMonth() -1;
         this.day = this.dateInstance.getDay();
         this.localDate = this.dateInstance.toLocaleDateString('fa-IR');
         this.daysPerMonth = (year, month) =>
@@ -28,7 +28,7 @@ class App
         const totalDays = Math.ceil(this.calendar.length / this.weekDays.length) * this.weekDays.length;
         let prev = [];
         let next = [];
-
+        
         this.weekDays.forEach(_day =>
         {
             const dayEl = document.createElement("div");
@@ -36,20 +36,22 @@ class App
             dayEl.textContent = _day
             this.calendarWrapperElement.appendChild(dayEl);
         })
-
         if(this.calendar[0].dayofWeek > 0)
         {
+            const prevMonthLength = this.daysPerMonth(this.year, this.month - 1)
+
             for (let i = this.calendar[0].dayofWeek; i > 0; i--)
             {
-                prev.push({i: i- 1, prevMonth: true });
+                prev.push({i: i- 1, prevMonth: true, dayofMonth: prevMonthLength - Math.abs(i - 1) });
             }
         }
         
         const nextDiff = totalDays - this.calendar.length - prev.length;
 
+
         for (let i = 0; i < nextDiff; i++)
         {
-            next.push({i: i, nextMonth: true});
+            next.push({i: i, nextMonth: true, dayofMonth: i + 1});
         }
         
         this.calendar = [...prev, ...this.calendar, ...next];
@@ -58,20 +60,22 @@ class App
         {
             const _item = this.calendar[i];
             const girdEl = document.createElement("div");
-            girdEl.classList.add("gird");   
-            if(this.daysPerMonth() === _item?.dayofMonth)
+            girdEl.classList.add("grid");   
+            if(this.daysPerMonth() === _item?.dayofMonth && !_item.nextMonth && !_item.prevMonth)
             {
                 girdEl.classList.add("active")
             }
+            if(_item.prevMonth || _item.nextMonth)
+            {
+                girdEl.classList.add("not");
+            }
             if(_item?.dayofMonth)
             {
-                girdEl.textContent = _item?.dayofMonth 
+                girdEl.textContent = _item?.dayofMonth;
             }
             this.calendarWrapperElement.appendChild(girdEl);
         }
-        console.log(this.calendar);
     }
-
 
     generateCalendar()
     {

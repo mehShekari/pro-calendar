@@ -28,13 +28,19 @@ body
 
 .calendar_wrapper .grid
 {
+    padding: 5px;
+    border-radius: 10px;
+    
 }
 
 .active
 {
     background: #333;
     color: #fff;
-    padding: 5px;
-    border-radius: 10px;
+}
+
+.not
+{
+    opacity: 0.5;
 }
 
