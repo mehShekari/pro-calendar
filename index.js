@@ -6,12 +6,12 @@ class App
     {
         this.calendarWrapperElement = document.querySelector(".calendar_wrapper");
         this.weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        this.months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        this.months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         this.calendar = [];
         this.dateConstructor = Date;
         this.dateInstance = new Date();
         this.year = this.dateInstance.getFullYear();
-        this.month = this.dateInstance.getMonth() -1;
+        this.month = this.dateInstance.getMonth() + 6;
         this.day = this.dateInstance.getDay();
         this.localDate = this.dateInstance.toLocaleDateString('fa-IR');
         this.daysPerMonth = (year, month) =>
