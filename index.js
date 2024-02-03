@@ -1,19 +1,23 @@
 "use strict";
-
 class App
 {
     constructor()
     {
         this.calendarWrapperElement = document.querySelector(".calendar_wrapper");
+        this.nextMonthBtnEl = document.querySelector(".next_btn");
+        this.prevMonthBtnEl = document.querySelector(".prev_btn");
+
         this.weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         this.months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         this.calendar = [];
+
         this.dateConstructor = Date;
         this.dateInstance = new Date();
         this.year = this.dateInstance.getFullYear();
         this.month = this.dateInstance.getMonth() + 6;
         this.day = this.dateInstance.getDay();
         this.localDate = this.dateInstance.toLocaleDateString('fa-IR');
+        
         this.daysPerMonth = (year, month) =>
         {   
             // return current day in month and length of month
@@ -61,7 +65,8 @@ class App
         {
             const _item = this.calendar[i];
             const girdEl = document.createElement("div");
-            girdEl.classList.add("grid");   
+            girdEl.classList.add("grid");
+
             if(this.daysPerMonth() === _item?.dayofMonth && !_item.nextMonth && !_item.prevMonth)
             {
                 girdEl.classList.add("active")
@@ -74,6 +79,7 @@ class App
             {
                 girdEl.textContent = _item?.dayofMonth;
             }
+            
             this.calendarWrapperElement.appendChild(girdEl);
         }
         // console.log("last stage", performance.now())
@@ -101,12 +107,14 @@ class App
 
     nextMonth()
     {
-
+        this.month = this.month + 1;
+        console.log(this.month)
     }
 
     prevMonth()
     {
-
+        this.month = this.month - 1;
+        console.log(this.month)
     }
 
     jumpTo()
@@ -121,5 +129,5 @@ class App
     }
 }
 
-
-window.onload = () => new App();
+const app = new App()
+window.onload = () => app;

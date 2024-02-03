@@ -55,3 +55,25 @@ body
     color: #fff !important;
 }
 
+.btn_wrapper
+{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn
+{
+    font-size: 2.0rem;
+    background: #126571;
+    outline: none;
+    border: none;
+    color: #fff;
+    padding: 5px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
