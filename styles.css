@@ -19,28 +19,39 @@ body
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     width: 60%;
-    gap: 10px;
+    /* gap: 10px; */
     margin: 100px auto;
     text-align: center;
     font-size: 15px;
+    background-color: #121212;
+    gap: 2px;
+    color: #fff;
 }
 
 
 .calendar_wrapper .grid
 {
     padding: 5px;
-    border-radius: 10px;
-    
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+.calendar_wrapper .grid:hover
+{
+    background-color: rgba(27, 149, 168, 0.651);
+    color: #fff !important;
 }
 
 .active
 {
-    background: #333;
-    color: #fff;
+    background: #126571 !important;
 }
 
 .not
 {
+    background-color: #333 !important;
     opacity: 0.5;
+    color: #fff !important;
 }
 

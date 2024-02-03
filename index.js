@@ -36,6 +36,7 @@ class App
             dayEl.textContent = _day
             this.calendarWrapperElement.appendChild(dayEl);
         })
+
         if(this.calendar[0].dayofWeek > 0)
         {
             const prevMonthLength = this.daysPerMonth(this.year, this.month - 1)
@@ -48,12 +49,12 @@ class App
         
         const nextDiff = totalDays - this.calendar.length - prev.length;
 
-
         for (let i = 0; i < nextDiff; i++)
         {
             next.push({i: i, nextMonth: true, dayofMonth: i + 1});
         }
         
+        // final form of calendar
         this.calendar = [...prev, ...this.calendar, ...next];
 
         for (let i = 0; i < this.calendar.length; i++)
@@ -75,13 +76,15 @@ class App
             }
             this.calendarWrapperElement.appendChild(girdEl);
         }
+        // console.log("last stage", performance.now())
     }
 
     generateCalendar()
     {
         for (let i = 1; i <= this.daysPerMonth(this.year, this.month); i++)
         {
-            let dayObj = { 
+            let dayObj = {
+                id: Math.random() * 1000,
                 dayName: this.weekDays[new Date(this.year, this.month, i).getDay()],
                 dayofMonth: i,
                 dayofWeek: new Date(this.year, this.month, i).getDay(),
@@ -106,8 +109,14 @@ class App
 
     }
 
+    jumpTo()
+    {
+
+    }
+
     render()
     {
+        // console.log("first stage", performance.now())
         this.generateCalendar()
     }
 }
